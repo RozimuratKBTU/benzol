@@ -5,7 +5,7 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Компонент для атома с определенным цветом
-const Atom = ({ position, color, size = 0.4 }) => {
+const Atom = ({ position, color, size = 0.4 }: { position: THREE.Vector3, color: string, size?: number }) => {
   return (
     <mesh position={position}>
       <sphereGeometry args={[size, 32, 32]} />
@@ -15,7 +15,7 @@ const Atom = ({ position, color, size = 0.4 }) => {
 };
 
 // Компонент для связи между атомами
-const Bond = ({ start, end, color = "#ffffff" }) => {
+const Bond = ({ start, end, color = "#ffffff" }: { start: THREE.Vector3, end: THREE.Vector3, color?: string }) => {
   // Вычисляем направление связи
   const direction = new THREE.Vector3().subVectors(end, start);
   const midPoint = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
@@ -37,7 +37,12 @@ const Bond = ({ start, end, color = "#ffffff" }) => {
 };
 
 // Компонент для двойной связи
-const DoubleBond = ({ start, end, color = "#ffffff", offset = 0.1 }) => {
+const DoubleBond = ({ start, end, color = "#ffffff", offset = 0.1 }: { 
+  start: THREE.Vector3, 
+  end: THREE.Vector3, 
+  color?: string, 
+  offset?: number 
+}) => {
   // Вычисляем направление связи
   const direction = new THREE.Vector3().subVectors(end, start);
   const perp = new THREE.Vector3(-direction.z, 0, direction.x).normalize().multiplyScalar(offset);
@@ -57,7 +62,7 @@ const DoubleBond = ({ start, end, color = "#ffffff", offset = 0.1 }) => {
 };
 
 // Полная модель бензола
-const BenzeneMolecule = ({ rotate = true }) => {
+const BenzeneMolecule = ({ rotate = true }: { rotate?: boolean }) => {
   const groupRef = useRef<THREE.Group>(null);
   
   // Вращение модели
@@ -70,7 +75,7 @@ const BenzeneMolecule = ({ rotate = true }) => {
   
   // Расчет позиций для атомов
   const radius = 1.2;
-  const atomPositions = [];
+  const atomPositions: THREE.Vector3[] = [];
   for (let i = 0; i < 6; i++) {
     const angle = (Math.PI / 3) * i;
     atomPositions.push(new THREE.Vector3(
@@ -135,7 +140,12 @@ const BenzeneMolecule = ({ rotate = true }) => {
 };
 
 // Основная компонента, которая будет использоваться в других частях приложения
-const BenzeneModel: React.FC<{ height?: string, interactive?: boolean }> = ({ 
+interface BenzeneModelProps {
+  height?: string;
+  interactive?: boolean;
+}
+
+const BenzeneModel: React.FC<BenzeneModelProps> = ({ 
   height = "400px", 
   interactive = true
 }) => {

@@ -8,6 +8,7 @@ interface FeatureCardProps {
   description: string;
   className?: string;
   gradient?: boolean;
+  style?: React.CSSProperties;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
@@ -15,16 +16,20 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   title,
   description,
   className,
-  gradient = false
+  gradient = false,
+  style
 }) => {
   return (
-    <div className={cn(
-      "p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg",
-      gradient 
-        ? "bg-gradient-to-br from-benzol-primary/10 to-benzol-accent/5" 
-        : "bg-white",
-      className
-    )}>
+    <div 
+      className={cn(
+        "p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg",
+        gradient 
+          ? "bg-gradient-to-br from-benzol-primary/10 to-benzol-accent/5" 
+          : "bg-white",
+        className
+      )}
+      style={style}
+    >
       {icon && (
         <div className="mb-4 text-benzol-accent">
           {icon}

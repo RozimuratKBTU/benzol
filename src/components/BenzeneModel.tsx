@@ -139,7 +139,6 @@ const BenzeneMolecule = ({ rotate = true }: { rotate?: boolean }) => {
   );
 };
 
-// Основная компонента, которая будет использоваться в других частях приложения
 interface BenzeneModelProps {
   height?: string;
   interactive?: boolean;

@@ -36,12 +36,12 @@ const Contact = () => {
             <div className="space-y-8">
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h4 className="text-lg font-bold mb-2">Мекенжайымыз</h4>
-                <p className="text-muted-foreground">Қазақстан Республикасы, Алматы қ.</p>
+                <p className="text-muted-foreground">Қазақстан Республикасы, Шымкент қ.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h4 className="text-lg font-bold mb-2">Электрондық пошта</h4>
-                <p className="text-muted-foreground">info@benzol-ai.kz</p>
+                <p className="text-muted-foreground">info@benzol.kz</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-md">
